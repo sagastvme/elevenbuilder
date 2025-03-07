@@ -28,12 +28,61 @@
         let newName = prompt('Enter the name for the {position}')
         event.target.value = newName
     }
+    document.addEventListener('DOMContentLoaded', (event)=>{
+        let select = document.getElementById('formation')
+        let formations = ['4-3-3', '4-2-1-2']
+        for (formation of formations){
+            let option = document.createElement('option')
+            option.value = formation
+            option.innerText = formation
+            select.appendChild(option)
+        }
+    })
+    function rearrangeFormation(event){
+        let formation = event.srcElement.selectedOptions[0].value
+        formation = formation.split('-')
+        formation = formation.map((val) => {
+            return parseInt(val)          
+        })
+           let main = document.getElementById('lineup')
+            main.innerHTML = ''
+
+        let rows = formation.length
+        console.log(rows)
+        for (let i = 0 ; i < rows; i++){
+            let row = document.createElement('div')
+            row.id = i
+
+            for(let j = 0 ; j < formation[i]; j++){
+                let player = document.createElement('input')
+                player.name = 'formation'
+                player.id = i + ' ' + j 
+                player.readOnly = true 
+                player.addEventListener('click', changeName); // Add event listener
+          
+                row.appendChild(player)
+            }
+
+
+
+            let main = document.getElementById('lineup')
+        
+            main.appendChild(row)
+        }
+    
+    }
   </script>
 </head>
 <body>
 
   <main>
-    <input readonly onclick="changeName(event)" type="text" name="keeper" id="keeper">
+    <select onchange="rearrangeFormation(event)" name="formation" id="formation"></select>
+
+
+    <section id="lineup">
+
+        
+    </section>
   </main>
 </body>
 </html>
