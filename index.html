@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eleven Builder</title>
+  <style>
+
+    /* Ensure html and body take up full height */
+    html, body {
+      height: 100%;
+      margin: 0; /* Remove default margin */
+      padding: 0; /* Remove default padding */
+    }
+
+    /* Make main take up full height and width */
+    main {
+      background-color: lightblue;
+      height: 100%; /* Take up full height of body */
+      width: 100%; /* Take up full width of body */
+      display: flex; /* Optional: For centering content */
+      justify-content: center; /* Optional: Center horizontally */
+      align-items: center; /* Optional: Center vertically */
+    }
+  </style>
+  <script>
+    function changeName(event){
+        let newName = prompt('Enter the name for the {position}')
+        event.target.value = newName
+    }
+  </script>
+</head>
+<body>
+
+  <main>
+    <input readonly onclick="changeName(event)" type="text" name="keeper" id="keeper">
+  </main>
+</body>
+</html>
